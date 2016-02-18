@@ -124,6 +124,16 @@
                     </cache_option>
                 </entities>
             </core_resource>
+            <dsnews>
+                <resourceModel>dsnews_resource</resourceModel>
+            </dsnews>
+            <dsnews_resource>
+                <entities>
+                    <table_news>
+                        <table>ds_news_entities</table>
+                    </table_news>
+                </entities>
+            </dsnews_resource>
         </models>
     </global>
     <default>
