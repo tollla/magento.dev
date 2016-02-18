@@ -72,6 +72,11 @@
                     <use>default_read</use>
                 </connection>
             </core_read>
+            <dsnews_setup>
+                <setup>
+                    <module>DS_News</module>
+                </setup>
+            </dsnews_setup>
         </resources>
         <resource>
             <connection>
