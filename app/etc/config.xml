@@ -171,4 +171,15 @@
             <version>0.0.1</version>
         </DS_News>
     </modules>
+    <frontend>
+        <routers>
+            <dsnews>
+                <use>standard</use>
+                <args>
+                    <module>DS_News</module>
+                    <frontName>news</frontName>
+                </args>
+            </dsnews>
+        </routers>
+    </frontend>
 </config>
