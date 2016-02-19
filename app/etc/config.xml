@@ -137,6 +137,11 @@
                 </entities>
             </dsnews_resource>
         </models>
+        <blocks>
+            <dsnews>
+                <class>DS_News_Block</class>
+            </dsnews>
+        </blocks>
     </global>
     <default>
         <system>
