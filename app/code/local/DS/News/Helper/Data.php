@@ -27,4 +27,34 @@ class DS_News_Helper_Data extends Mage_Core_Helper_Abstract
             return $url;
         }
     }
+
+    public function getCategoriesList()
+    {
+        $categories = Mage::getModel('dsnews/category')
+            ->getCollection();
+        $output = array();
+        foreach($categories as $category){
+            $output[$category->getId()] = $category->getTitle();
+        }
+        return $output;
+    }
+
+    public function getCategoriesOptions()
+    {
+        $categories = Mage::getModel('dsnews/category')
+            ->getCollection();
+
+        $options = array();
+        $options[] = array(
+            'label' => '',
+            'value' => ''
+        );
+        foreach ($categories as $category) {
+            $options[] = array(
+                'label' => $category->getTitle(),
+                'value' => $category->getId(),
+            );
+        }
+        return $options;
+    }
 }

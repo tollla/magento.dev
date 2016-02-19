@@ -36,6 +36,12 @@ class DS_News_Block_Adminhtml_News_Edit_Tabs_General extends Mage_Adminhtml_Bloc
             'name' => 'image',
         ));
 
+        $fieldset->addField('category_id', 'select', array(
+            'label' => $helper->__('Category'),
+            'name' => 'category_id',
+            'values' => $helper->getCategoriesOptions(),
+        ));
+
         $fieldset->addField('created', 'date', array(
             'format' => Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT),
             'image' => $this->getSkinUrl('images/grid-cal.gif'),

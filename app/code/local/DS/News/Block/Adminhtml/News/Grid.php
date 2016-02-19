@@ -24,13 +24,21 @@ class DS_News_Block_Adminhtml_News_Grid extends Mage_Adminhtml_Block_Widget_Grid
         $this->addColumn('news_id', array(
             'header' => $helper->__('News ID'),
             'index' => 'news_id',
-            'type' => 'int'
+            'width' => '100px',
         ));
 
         $this->addColumn('title', array(
             'header' => $helper->__('Title'),
             'index' => 'title',
             'type' => 'text',
+        ));
+
+        $this->addColumn('category', array(
+            'header' => $helper->__('Category'),
+            'index' => 'category_id',
+            'options' => $helper->getCategoriesList(),
+            'type'  => 'options',
+            'width' => '150px',
         ));
 
         $this->addColumn('created', array(
