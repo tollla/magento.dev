@@ -34,6 +34,13 @@ class DS_News_Block_Adminhtml_Category_Edit_Tabs extends Mage_Adminhtml_Block_Wi
             'content' => $this->getLayout()->createBlock('dsnews/adminhtml_category_edit_tabs_custom')->toHtml(),
         ));
 
+        $this->addTab('news_section', array(
+            'class' => 'ajax',
+            'label' => $helper->__('News'),
+            'title' => $helper->__('News'),
+            'url' => $this->getUrl('*/*/news', array('_current' => true)),
+        ));
+
         return parent::_prepareLayout();
     }
 

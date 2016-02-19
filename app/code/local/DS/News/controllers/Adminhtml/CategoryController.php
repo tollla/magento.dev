@@ -104,4 +104,17 @@ class DS_News_Adminhtml_CategoryController extends Mage_Adminhtml_Controller_Act
         }
         $this->_redirect('*/*');
     }
+
+    public function newsAction()
+    {
+        $id = (int) $this->getRequest()->getParam('id');
+        $model = Mage::getModel('dsnews/category')->load($id);
+        Mage::register('current_category', $model);
+
+        if (Mage::app()->getRequest()->isAjax()) {
+            $this->loadLayout();
+            echo $this->getLayout()->createBlock('dsnews/adminhtml_category_edit_tabs_news')->toHtml();
+        }
+    }
+
 }
