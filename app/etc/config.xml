@@ -172,6 +172,13 @@
         </DS_News>
     </modules>
     <frontend>
+        <layout>
+            <updates>
+                <dsnews>
+                    <file>ds_news.xml</file>
+                </dsnews>
+            </updates>
+        </layout>
         <routers>
             <dsnews>
                 <use>standard</use>
