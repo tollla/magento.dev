@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<layout>
+    <dsnews_index_index>
+        <reference name="content">
+            <block type="core/template" template="ds_news/index.phtml" />
+        </reference>
+    </dsnews_index_index>
+</layout>

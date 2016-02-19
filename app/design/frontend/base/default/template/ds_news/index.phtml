@@ -1,0 +1,8 @@
+<h1>Template ds_news/index.phtml</h1>
+<?=__FILE__.":".__LINE__;?>
+<h1>News</h1>
+<?php
+$news = Mage::registry('news');
+foreach ($news as $item) {
+    echo '<h2>' . $item['title'] . '<small><i>'. $item['created'] .'</i></small></h2>';
+}
