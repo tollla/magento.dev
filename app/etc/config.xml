@@ -142,6 +142,11 @@
                 <class>DS_News_Block</class>
             </dsnews>
         </blocks>
+        <helpers>
+            <dsnews>
+                <class>DS_News_Helper</class>
+            </dsnews>
+        </helpers>
     </global>
     <default>
         <system>
@@ -196,4 +201,24 @@
             </dsnews>
         </routers>
     </frontend>
+    <admin>
+        <routers>
+            <dsnews_admin>
+                <use>admin</use>
+                <args>
+                    <module>DS_News</module>
+                    <frontName>dsnews_admin</frontName>
+                </args>
+            </dsnews_admin>
+        </routers>
+    </admin>
+    <adminhtml>
+        <menu>
+            <dsnews module="dsnews">
+                <title>News</title>
+                <sort_order>77</sort_order>
+                <action>dsnews_admin/adminhtml_news</action>
+            </dsnews>
+        </menu>
+    </adminhtml>
 </config>
