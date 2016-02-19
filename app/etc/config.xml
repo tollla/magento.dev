@@ -125,9 +125,11 @@
                 </entities>
             </core_resource>
             <dsnews>
+                <class>DS_News_Model</class>
                 <resourceModel>dsnews_resource</resourceModel>
             </dsnews>
             <dsnews_resource>
+                <class>DS_News_Model_Resource</class>
                 <entities>
                     <table_news>
                         <table>ds_news_entities</table>
