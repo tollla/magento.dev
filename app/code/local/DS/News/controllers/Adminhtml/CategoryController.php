@@ -45,25 +45,41 @@ class DS_News_Adminhtml_CategoryController extends Mage_Adminhtml_Controller_Act
 
     public function saveAction()
     {
+        $categoryId = $this->getRequest()->getParam('id');
         if ($data = $this->getRequest()->getPost()) {
             try {
                 $helper = Mage::helper('dsnews');
                 $model = Mage::getModel('dsnews/category');
 
-                $model->setData($data)->setId($this->getRequest()->getParam('id'));
-                if(!$model->getCreated()){
-                    $model->setCreated(now());
-                }
+                $model->setData($data)->setId($categoryId);
                 $model->save();
 
-                Mage::getSingleton('adminhtml/session')->addSuccess($this->__('News was saved successfully'));
+                $categoryId = $model->getId();
+                $categoryNews = $model->getNewsCollection()->getAllIds();
+                if ($selectedNews = $this->getRequest()->getParam('selected_news', null)) {
+                    $selectedNews = Mage::helper('adminhtml/js')->decodeGridSerializedInput($selectedNews);
+                } else {
+                    $selectedNews = array();
+                }
+
+                $setCategory = array_diff($selectedNews, $categoryNews);
+                $unsetCategory = array_diff($categoryNews, $selectedNews);
+
+                foreach($setCategory as $id){
+                    Mage::getModel('dsnews/news')->setId($id)->setCategoryId($categoryId)->save();
+                }
+                foreach($unsetCategory as $id){
+                    Mage::getModel('dsnews/news')->setId($id)->setCategoryId(0)->save();
+                }
+
+                Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Category was saved successfully'));
                 Mage::getSingleton('adminhtml/session')->setFormData(false);
                 $this->_redirect('*/*/');
             } catch (Exception $e) {
                 Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
                 Mage::getSingleton('adminhtml/session')->setFormData($data);
                 $this->_redirect('*/*/edit', array(
-                    'id' => $this->getRequest()->getParam('id')
+                    'id' => $categoryId
                 ));
             }
             return;
@@ -109,11 +125,27 @@ class DS_News_Adminhtml_CategoryController extends Mage_Adminhtml_Controller_Act
     {
         $id = (int) $this->getRequest()->getParam('id');
         $model = Mage::getModel('dsnews/category')->load($id);
+        $request = Mage::app()->getRequest();
+
         Mage::register('current_category', $model);
 
-        if (Mage::app()->getRequest()->isAjax()) {
+        if ($request->isAjax()) {
+
             $this->loadLayout();
-            echo $this->getLayout()->createBlock('dsnews/adminhtml_category_edit_tabs_news')->toHtml();
+            $layout = $this->getLayout();
+
+            $root = $layout->createBlock('core/text_list', 'root', array('output' => 'toHtml'));
+
+            $grid = $layout->createBlock('dsnews/adminhtml_category_edit_tabs_news');
+            $root->append($grid);
+
+            if (!$request->getParam('grid_only')) {
+                $serializer = $layout->createBlock('adminhtml/widget_grid_serializer');
+                $serializer->initSerializerBlock($grid, 'getSelectedNews', 'selected_news', 'selected_news');
+                $root->append($serializer);
+            }
+
+            $this->renderLayout();
         }
     }
 
