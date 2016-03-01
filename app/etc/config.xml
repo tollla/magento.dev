@@ -150,6 +150,16 @@
                 <class>DS_News_Helper</class>
             </dsnews>
         </helpers>
+        <events>
+            <controller_front_init_routers>
+                <observers>
+                    <dsnews>
+                        <class>DS_News_Controller_Router</class>
+                        <method>initControllerRouters</method>
+                    </dsnews>
+                </observers>
+            </controller_front_init_routers>
+        </events>
     </global>
     <default>
         <system>
@@ -183,7 +193,7 @@
     </varien>
     <modules>
         <DS_News>
-            <version>0.0.2</version>
+            <version>0.0.3</version>
         </DS_News>
     </modules>
     <frontend>

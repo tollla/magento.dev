@@ -21,6 +21,18 @@ class DS_News_Model_News extends Mage_Core_Model_Abstract
         return parent::_afterDelete();
     }
 
+    protected function _beforeSave()
+    {
+        $helper = Mage::helper('dsnews');
+
+        if (!$this->getData('link')) {
+            $this->setData('link', $helper->prepareUrl($this->getTitle()));
+        } else {
+            $this->setData('link', $helper->prepareUrl($this->getData('link')));
+        }
+        return parent::_beforeSave();
+    }
+
     public function getImageUrl()
     {
         $helper = Mage::helper('dsnews');

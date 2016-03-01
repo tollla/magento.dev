@@ -49,6 +49,11 @@ class DS_News_Block_Adminhtml_News_Edit_Tabs_General extends Mage_Adminhtml_Bloc
             'name' => 'created'
         ));
 
+        $fieldset->addField('link', 'text', array(
+            'label' => $helper->__('Link'),
+            'name' => 'link',
+        ));
+
         $formData = array_merge($model->getData(), array('image' => $model->getImageUrl()));
         $form->setValues($formData);
         $this->setForm($form);

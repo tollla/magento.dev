@@ -57,4 +57,9 @@ class DS_News_Helper_Data extends Mage_Core_Helper_Abstract
         }
         return $options;
     }
+
+    public function prepareUrl($url)
+    {die(__FILE__.":".__LINE__);
+        return trim(preg_replace('/-+/', '-', preg_replace('/[^a-z0-9]/sUi', '-', strtolower(trim($url)))), '-');
+    }
 }
