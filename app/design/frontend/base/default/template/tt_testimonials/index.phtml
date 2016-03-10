@@ -1,0 +1,12 @@
+<?php
+$testimonials = $this->getNewsCollection();
+$testimonialsViewUrl = Mage::getUrl('testimonials/index/view');
+?>
+<h1>Testimonials</h1>
+<?php foreach ($testimonials as $item): ?>
+    <h2>
+        <a href="<?php echo $testimonialsViewUrl; ?>?id=<?php echo $item->getId(); ?>">
+            <?php echo $item->getContent(); ?>
+        </a>
+    </h2>
+<?php endforeach; ?>

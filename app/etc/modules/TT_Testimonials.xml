@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<config>
+    <modules>
+        <TT_Testimonials>
+            <active>true</active>
+            <codePool>local</codePool>
+        </TT_Testimonials>
+    </modules>
+</config>
