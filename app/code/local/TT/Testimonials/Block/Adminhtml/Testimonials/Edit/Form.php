@@ -9,7 +9,6 @@ class TT_Testimonials_Block_Adminhtml_Testimonials_Edit_Form extends Mage_Adminh
 {
     protected function _prepareForm()
     {
-        die("asd");
         $helper = Mage::helper('tttestimonials');
         $model = Mage::registry('current_testimonials');
 
@@ -31,6 +30,13 @@ class TT_Testimonials_Block_Adminhtml_Testimonials_Edit_Form extends Mage_Adminh
 //            'required' => true,
 //            'name' => 'title',
 //        ));
+
+        $fieldset->addField('user_id', 'select', array(
+            'label'     => $helper->__('Customer'),
+            'class'     => 'required-entry',
+            'values'    => Mage::getModel('tttestimonials/testimonials')->toOptionArray(),
+            'name'      => 'user_id',
+        ));
 
         $fieldset->addField('content', 'editor', array(
             'label' => $helper->__('Content'),

@@ -9,8 +9,7 @@ class TT_Testimonials_Block_Adminhtml_Testimonials_Grid extends Mage_Adminhtml_B
 {
     protected function _prepareCollection()
     {
-        $collection = Mage::getModel('tttestimonials/testimonials')
-            ->getCollection();
+        $collection = Mage::getModel('tttestimonials/testimonials')->getListTestimonials();
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }

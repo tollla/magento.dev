@@ -8,16 +8,9 @@
 
 class TT_Testimonials_Block_Adminhtml_Testimonials_Edit extends Mage_Adminhtml_Block_Widget_Form_Container
 {
-    protected function __construct(){
-
-        print __FILE__.": ".__LINE__;
-        die;
-    }
 
     protected function _construct()
     {
-        print __FILE__.": ".__LINE__;
-        die;
         $this->_blockGroup = 'tttestimonials';
         $this->_controller = 'adminhtml_testimonials';
     }

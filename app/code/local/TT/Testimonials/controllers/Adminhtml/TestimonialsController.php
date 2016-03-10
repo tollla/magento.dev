@@ -37,10 +37,12 @@ class TT_Testimonials_Adminhtml_TestimonialsController extends Mage_Adminhtml_Co
                 ->load($id)
         );
 
+
         $this->_addContent(
             $this->getLayout()
-                ->createBlock('tttestimonials/adminhtml_testimonials_editq')
+                ->createBlock('tttestimonials/adminhtml_testimonials_edit')
         );
+
         $this->renderLayout();
     }
 
