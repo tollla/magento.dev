@@ -4,9 +4,27 @@ $testimonialsViewUrl = Mage::getUrl('testimonials/index/view');
 ?>
 <h1>Testimonials</h1>
 <?php foreach ($testimonials as $item): ?>
-    <h2>
+    <p>
         <a href="<?php echo $testimonialsViewUrl; ?>?id=<?php echo $item->getId(); ?>">
-            <?php echo $item->getContent(); ?>
+            <?php
+                $string = $item->getContent();
+                // clear all html elements
+                $string = strip_tags($string);
+                if(strlen($string) > 150){
+                    // show only first 150 symbol
+                    $string = substr($string, 0, 150);
+                }
+
+                // remove last symbol !,.-
+                $string = rtrim($string, "!,.-");
+                if(strlen($string) > 149){
+                    $string .= "… ";
+                }
+                echo $string;
+            ?>
         </a>
-    </h2>
+    </p>
 <?php endforeach; ?>
+<?php if(Mage::helper('customer')->isLoggedIn()):?>
+    <div><a href="<?=Mage::getUrl('testimonials/index/add');?>">Add Testimonials</a></div>
+<?php endif;?>

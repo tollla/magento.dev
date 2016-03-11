@@ -7,6 +7,13 @@
  */
 class TT_Testimonials_IndexController extends Mage_Core_Controller_Front_Action
 {
+    protected function _construct(){
+//
+//        // only registered user
+
+//
+    }
+
     public function indexAction()
     {
         $this->loadLayout();
@@ -45,5 +52,44 @@ class TT_Testimonials_IndexController extends Mage_Core_Controller_Front_Action
         } else {
             $this->_forward('noRoute');
         }
+    }
+
+    public function addAction(){
+
+        // check logged customer
+        if(!Mage::helper('customer')->isLoggedIn()){
+            Mage::app()->getFrontController()->getResponse()->setRedirect(Mage::getUrl('customer/account'));
+        }
+
+        if ($data = $this->getRequest()->getPost()) {
+            try {
+                $customerData = Mage::getSingleton('customer/session')->getCustomer();
+
+                $data['user_id'] = $customerData->getId();
+                $data['created'] = date('Y-m-d H:i:s');
+                $data['content'] = $data['text'];
+//                print"<pre>";
+//                var_dump($data);
+//                die;
+                $model = Mage::getModel('tttestimonials/testimonials');
+                $model->setData($data)->setId($this->getRequest()->getParam('id'));
+                if(!$model->getCreated()){
+                    $model->setCreated(now());
+                }
+                $model->save();
+
+                $this->_redirect('*/*/');
+            } catch (Exception $e) {
+
+                $this->_redirect('*/*/edit', array(
+                    'id' => $this->getRequest()->getParam('id')
+                ));
+            }
+        }
+
+
+        $this->loadLayout();
+        $this->getLayout()->getBlock('testimonials.add');
+        $this->renderLayout();
     }
 }

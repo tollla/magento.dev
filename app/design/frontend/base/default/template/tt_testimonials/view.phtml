@@ -1,2 +1,5 @@
 <h1><?php echo $testimonialsItem->getTitle(); ?></h1>
 <div class="content"><?php echo $testimonialsItem->getContent(); ?></div>
+<?php if(Mage::helper('customer')->isLoggedIn()):?>
+    <div><a href="<?=Mage::getUrl('testimonials/index/add');?>">Add Testimonials</a></div>
+<?php endif;?>
