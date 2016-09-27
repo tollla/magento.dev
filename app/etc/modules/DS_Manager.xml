@@ -1,84 +1,13 @@
 <?xml version="1.0" ?>
+
 <config>
     <modules>
         <DS_Manager>
-            <version>0.0.1</version>
             <active>true</active>
             <codePool>local</codePool>
+            <depends>
+                <Mage_Cms />
+            </depends>
         </DS_Manager>
     </modules>
-    <global>
-        <resources>
-            <dsmanager_setup>
-                <setup>
-                    <module>DS_Manager</module>
-                </setup>
-            </dsmanager_setup>
-        </resources>
-        <models>
-            <dsmanager>
-                <class>DS_Manager_Model</class>
-                <resourceModel>dsmanager_resource</resourceModel>
-            </dsmanager>
-            <dsmanager_resource>
-                <class>DS_Manager_Model_Resource</class>
-                <entities>
-                    <table_manager>
-                        <table>ds_manager_entities</table>
-                    </table_manager>
-                    <table_managerToCategory>
-                        <table>ds_manager_to_category_entities</table>
-                    </table_managerToCategory>
-                </entities>
-            </dsmanager_resource>
-        </models>
-        <helpers>
-            <dsmanager>
-                <class>DS_Manager_Helper</class>
-            </dsmanager>
-        </helpers>
-        <blocks>
-            <dsmanager>
-                <class>DS_Manager_Block</class>
-            </dsmanager>
-        </blocks>
-    </global>
-    <frontend>
-        <layout>
-            <updates>
-                <dsmanager>
-                    <file>DS_Manager.xml</file>
-                </dsmanager>
-            </updates>
-        </layout>
-        <routers>
-            <dsmanager>
-                <use>standard</use>
-                <args>
-                    <module>DS_Manager</module>
-                    <frontName>manager</frontName>
-                </args>
-            </dsmanager>
-        </routers>
-    </frontend>
-    <admin>
-        <routers>
-            <dsmanager_admin>
-                <use>admin</use>
-                <args>
-                    <module>DS_Manager</module>
-                    <frontName>dsmanager_admin</frontName>
-                </args>
-            </dsmanager_admin>
-        </routers>
-    </admin>
-    <adminhtml>
-        <menu>
-            <dsmanager module="dsmanager">
-                <title>Manager</title>
-                <sort>88</sort>
-                <action>dsmanager_admin/adminhtml_manager</action>
-            </dsmanager>
-        </menu>
-    </adminhtml>
 </config>
