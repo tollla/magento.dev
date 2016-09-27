@@ -40,6 +40,12 @@ $installer->getConnection()->createTable($table);
  */
 $table = $installer->getConnection()
     ->newTable($installer->getTable('dsmanager/table_managerToCategory'))
+    ->addColumn('id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
+        'identity'  => true,
+        'unsigned'  => true,
+        'nullable'  => false,
+        'primary'   => true,
+    ), 'ID')
     ->addColumn('manager_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
     ), 'Manager ID')
     ->addColumn('category_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
