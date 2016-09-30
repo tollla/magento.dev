@@ -40,9 +40,9 @@ class DS_Manager_Adminhtml_ManagerController extends Mage_Adminhtml_Controller_A
         $id = (int) $this->getRequest()->getParam('id');
         $model = Mage::getModel('dsmanager/manager');
 
-        if($data = Mage::getSingleton('adminhtml/session')->getFormData()){
+        if ($data = Mage::getSingleton('adminhtml/session')->getFormData()) {
             $model->setData($data)->setId($id);
-        }else{
+        } else {
             $model->load($id);
         }
 
@@ -70,7 +70,7 @@ class DS_Manager_Adminhtml_ManagerController extends Mage_Adminhtml_Controller_A
                 $collectionManagerToCategory = $modelManagerToCategory->getCollection();
 
                 $model->setData($data)->setId($this->getRequest()->getParam('id'));
-                if(!$model->getCreated()){
+                if (!$model->getCreated()) {
                     $model->setCreated(now());
                 }
                 $model->save();
@@ -78,14 +78,14 @@ class DS_Manager_Adminhtml_ManagerController extends Mage_Adminhtml_Controller_A
                 $id = $model->getId();
 
                 // clear
-                foreach($collectionManagerToCategory->addManagerIdFilter($id) as $row){
+                foreach ($collectionManagerToCategory->addManagerIdFilter($id) as $row) {
                     $modelManagerToCategory->setId($row->getId())->delete();
                 }
 
-                if(isset($data['category'])){
-                    foreach($data['category'] as $category_id){
+                if (isset($data['category'])) {
+                    foreach ($data['category'] as $category_id) {
                         $modelManagerToCategory->setData(array('manager_id'=>$id, 'category_id'=>$category_id));
-                        if(!$modelManagerToCategory->getCreated()){
+                        if (!$modelManagerToCategory->getCreated()) {
                             $modelManagerToCategory->setCreated(now());
                         }
                         $modelManagerToCategory->save();
@@ -149,16 +149,16 @@ class DS_Manager_Adminhtml_ManagerController extends Mage_Adminhtml_Controller_A
     {
         $manager = $this->getRequest()->getParam('manager', null);
 
-        if(is_array($manager) && sizeof($manager) > 0){
-            try{
-                foreach($manager as $id){
+        if (is_array($manager) && sizeof($manager) > 0) {
+            try {
+                foreach ($manager as $id) {
                     Mage::getModel('dsmanager/manager')->setId($id)->delete();
                 }
                 $this->_getSession()->addSuccess($this->__('Total of %d manager have been deleted', sizeof($manager)));
-            }catch (Exception $e){
+            } catch (Exception $e){
                 $this->_getSession()->addError($e->getMessage());
             }
-        }else{
+        } else {
             $this->_getSession()->addError($this->__('Please select manager'));
         }
 

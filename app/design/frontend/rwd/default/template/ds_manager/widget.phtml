@@ -12,20 +12,20 @@
     </div>
 
     <div>
-        <?php foreach($managers as $manager):?>
+        <?php foreach ($managers as $manager) :?>
             <div>
                     <h4><?= $manager->getName()?></h4>
-                <?php if($manager->getPhoto()):?>
+                <?php if ($manager->getPhoto()) :?>
                     <p><img src="/media/<?=$manager->getPhoto()?>" title="<?php echo
                         $this->escapeHtml($manager->getName()); ?>" border="0" width="100%"/></p>
                 <?php endif;?>
-                <?php if($manager->getSecondName()):?>
+                <?php if ($manager->getSecondName()) :?>
                     <p><label><?= $this->__('Name') ?>:&nbsp </label><?= $manager->getSecondName()?></p>
                 <?php endif;?>
-                <?php if($manager->getTelephone()):?>
+                <?php if ($manager->getTelephone()) :?>
                     <p><label><?= $this->__('Phone') ?>:&nbsp </label><?= $manager->getTelephone()?></p>
                 <?php endif;?>
-                <?php if($manager->getEmail()):?>
+                <?php if ($manager->getEmail()) :?>
                     <p><label><?= $this->__('Email') ?>:&nbsp </label><?= $manager->getEmail()?></p>
                 <?php endif;?>
             </div>

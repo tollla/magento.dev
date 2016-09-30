@@ -15,7 +15,7 @@ class  DS_Manager_Block_Adminhtml_Manager_Grid_Renderer_Image extends Mage_Admin
         $id = $row->getManagerId();
         $imageUrl = $helper->getImageUrl($id);
         $imagePath = $helper->getImagePath($id);
-        if(file_exists($imagePath)){
+        if (file_exists($imagePath)) {
             return "<img src=". $imageUrl ." width='97px'/>";
         }
 

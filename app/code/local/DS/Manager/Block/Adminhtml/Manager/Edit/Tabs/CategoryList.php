@@ -17,19 +17,19 @@ class DS_Manager_Block_Adminhtml_Manager_Edit_Tabs_CategoryList extends Mage_Adm
         $collection->addAttributeToSelect('name')->load();
 
         $categories = array();
-        foreach($collectionManagerToCategory->getData() as $row){
+        foreach ($collectionManagerToCategory->getData() as $row) {
             $categories[$row['category_id']] = true;
         }
 
         $html = '';
-        foreach($collection as $category){
+        foreach ($collection as $category) {
             $html .= '<input type="checkbox" name="category[]" value="'.$category->getEntityId().'"';
-            if(isset($categories[$category->getEntityId()])){
+            if (isset($categories[$category->getEntityId()])) {
                 $html .= 'checked="checked"';
             }
             $html .= '> ';
             $level = $category->getLevel();
-            for($a = 0; $level > $a; $a++){
+            for ($a = 0; $level > $a; $a++) {
                 $html .='--';
             }
             $html .=' <label>'.$category->getName().'</label>';
