@@ -51,14 +51,6 @@ Software License (OSL 3.0)
         </blocks>
     </global>
     <frontend>
-        <layout>
-            <updates>
-                <dsmanager>
-                    <file>DS_Manager.xml</file>
-                </dsmanager>
-
-            </updates>
-        </layout>
         <routers>
             <dsmanager>
                 <use>standard</use>

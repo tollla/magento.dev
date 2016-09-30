@@ -32,4 +32,18 @@ class DS_Manager_Model_Resource_ManagerToCategory_Collection extends Mage_Core_M
         return $this;
     }
 
+    /**
+     * Add manager filter
+     *
+     * @param  $categoryId
+     * @return Mage_XmlConnect_Model_Mysql4_ConfigData_Collection
+     */
+    public function addCategoryIdFilter($categoryId)
+    {
+        $this->getSelect()->where('category_id=?', $categoryId);
+        return $this;
+    }
+
+
+
 }// Class DS_Manager_Model_Resource_ManagerToCategory_Collection End
